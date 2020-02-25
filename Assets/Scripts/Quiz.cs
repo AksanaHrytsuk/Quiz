@@ -7,41 +7,35 @@ using UnityEngine.SceneManagement;
 public class Quiz : MonoBehaviour
 {
     int activeTask;
-    int lives = 3; //каунт жизней
+    int lives = 3; //count жизней
 
     [Header("Elements")]
-    public Image[] hearts;
+    public Image[] hearts; // массисв сердец-жизней типа Image
     public Image question; //картинка-вопрос
     public Button[] buttons; //кнопка-ответ, массив
 
     [Header("Config")]
-    public List<Tasks> taskList;
+    public List<Tasks> taskList; 
 
     // Start is called before the first frame update
     void Start()
     {
         // DontDestroyOnLoad(gameObject);
-        getRandomTask();
-        FillButtons();
-        UpdateQuestion();
+        getRandomTask(); 
+        FillButtons(); // 
+        UpdateQuestion(); 
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     public void RemoveTask()
     {
-        taskList.RemoveAt(activeTask);
+        taskList.RemoveAt(activeTask); // удаляет эктив таск из листа Тасков
     }
 
-    void getRandomTask()
+    void getRandomTask()  //  выбирает рандомно таск в листе тасков от 0 до количества тасков в листе
     {
         activeTask = Random.Range(0, taskList.Count);
     }
 
-    void LoadNextLevel()
+    void LoadNextLevel() // загрузка Таска со всеми его компонентами
     {
         RemoveTask();
         getRandomTask();
@@ -49,24 +43,26 @@ public class Quiz : MonoBehaviour
         UpdateQuestion();
         ActivateButtons();
     }
-    void FillButtons()
+    void FillButtons() 
     {
-        for (int i = 0; i < 4; i++)
+        // Присвоение текста кнопке данными из активного таска
+        for (int i = 0; i < 4; i++) 
         {
             buttons[i].GetComponentInChildren<Text>().text = taskList[activeTask].buttons[i];
         }
     }
-    public void SwitchOffHearts()
+    public void SwitchOffHearts() 
     {
-        hearts[lives - 1].gameObject.SetActive(false);
-        lives--;
+        hearts[lives - 1].gameObject.SetActive(false); //выключает сердце-жизнь, -1 так как счёт начинается с 1
+        lives--; // индекс массива сердец, уменьшает count lives на 1 при выключении C-Ж
+
     }
-    void UpdateQuestion()
+    void UpdateQuestion() // обновляет картинку-вопрос в завис. от активного Таска
     {
         question.sprite = taskList[activeTask].question;
     }
 
-    bool IsCorrect(int btnIndex)
+    bool IsCorrect(int btnIndex) //
     {
         if (btnIndex == taskList[activeTask].correctAnsver)
         {
@@ -78,7 +74,7 @@ public class Quiz : MonoBehaviour
         }
     }
 
-    void GameOver()
+    void GameOver() // Загружает сцену GameOverScene, если идекс жизней == 0
     {
         if (lives == 0)
         {
@@ -86,13 +82,13 @@ public class Quiz : MonoBehaviour
         }
         else
         {
-            LoadNextLevel();
+            LoadNextLevel(); // 
         }
     }
 
-    void Win()
+    void Win() //загружает сцену WinScene, когда остается один Таск в листе тасков
     {
-        if (taskList.Count == 1)
+        if (taskList.Count == 1) 
         {
             NextScene("WinScene");
         }
@@ -102,11 +98,11 @@ public class Quiz : MonoBehaviour
         }
     }
 
-    IEnumerator Wait(int btnIndex)
+    IEnumerator Wait(int btnIndex) // таймаут
     {
-        buttons[taskList[activeTask].correctAnsver - 1].GetComponent<Image>().color = Color.blue;
-        yield return new WaitForSeconds(1);
-        buttons[taskList[activeTask].correctAnsver - 1].GetComponent<Image>().color = Color.white;
+        buttons[taskList[activeTask].correctAnsver - 1].GetComponent<Image>().color = Color.blue; //если кнопка нажата с правильным ответом - меняется цвет на синий
+        yield return new WaitForSeconds(1); // таймер в 1 сек
+        buttons[taskList[activeTask].correctAnsver - 1].GetComponent<Image>().color = Color.white; // после таймаута, цвет меняется на белый
         CheckAnsver(btnIndex);
     }
     public void CheckAnsver(int btnIndex)
@@ -131,7 +127,7 @@ public class Quiz : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            buttons[i].gameObject.SetActive(true);
+            buttons[i].gameObject.SetActive(true); // включает баттоны 
         }
     }
     public void FiftyFifty()
