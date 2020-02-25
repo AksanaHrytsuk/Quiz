@@ -310,6 +310,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ef8c570f50db66528af0db3359a076f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hearts:
+  - {fileID: 21300000, guid: 352ed0fa5d5ff8554b21dd06fa7cf058, type: 3}
+  - {fileID: 21300000, guid: 352ed0fa5d5ff8554b21dd06fa7cf058, type: 3}
+  - {fileID: 21300000, guid: 352ed0fa5d5ff8554b21dd06fa7cf058, type: 3}
+  question: {fileID: 0}
+  buttons: []
+  fiftyFifty: {fileID: 0}
+  activeTasks: []
 --- !u!4 &833068510
 Transform:
   m_ObjectHideFlags: 0

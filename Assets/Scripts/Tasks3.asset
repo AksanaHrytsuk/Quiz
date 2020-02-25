@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a52c1496ca4f175a9846ef617960903, type: 3}
   m_Name: Tasks3
   m_EditorClassIdentifier: 
-  quetion1: {fileID: 21300000, guid: ae73aab52397c52b78f248f37eeeac6d, type: 3}
+  question: {fileID: 21300000, guid: 3b685dcd2f1e11d808f17f39f866bc21, type: 3}
   buttons:
-  - 3
-  - 3
-  - 3
-  - 3
-  correctAnsver: 0
-  fiftyFifty: 0000000000000000
+  - "\u041E\u0432\u043E\u0449"
+  - "\u0422\u0440\u0430\u0432\u0430"
+  - "\u0424\u0440\u0443\u043A\u0442"
+  - "\u042F\u0433\u043E\u0434\u0430"
+  correctAnsver: 1
+  fiftyFifty: 0200000003000000
