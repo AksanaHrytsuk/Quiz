@@ -7,20 +7,21 @@ using UnityEngine.SceneManagement;
 public class Quiz : MonoBehaviour
 {
     int activeTask;
-    int lives = 3; //count жизней
+    public int lives = 3; //count жизней
 
     [Header("Elements")]
     public Image[] hearts; // массисв сердец-жизней типа Image
     public Image question; //картинка-вопрос
     public Button[] buttons; //кнопка-ответ, массив
+    public Image forTimeout;
 
     [Header("Config")]
-    public List<Tasks> taskList; 
+    public List<Tasks> taskList; //список такско, всего их 6
 
     // Start is called before the first frame update
     void Start()
     {
-        // DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
         getRandomTask(); 
         FillButtons(); // 
         UpdateQuestion(); 
@@ -101,7 +102,9 @@ public class Quiz : MonoBehaviour
     IEnumerator Wait(int btnIndex) // таймаут
     {
         buttons[taskList[activeTask].correctAnsver - 1].GetComponent<Image>().color = Color.blue; //если кнопка нажата с правильным ответом - меняется цвет на синий
+        forTimeout.gameObject.SetActive(true);
         yield return new WaitForSeconds(1); // таймер в 1 сек
+        forTimeout.gameObject.SetActive(false);
         buttons[taskList[activeTask].correctAnsver - 1].GetComponent<Image>().color = Color.white; // после таймаута, цвет меняется на белый
         CheckAnsver(btnIndex);
     }
@@ -127,7 +130,7 @@ public class Quiz : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            buttons[i].gameObject.SetActive(true); // включает баттоны 
+            buttons[i].gameObject.SetActive(true); // активирует баттоны 
         }
     }
     public void FiftyFifty()
