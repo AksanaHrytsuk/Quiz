@@ -15,7 +15,7 @@ MonoBehaviour:
   question: {fileID: 21300000, guid: 97466e0830522ea9f8de426389a1fd68, type: 3}
   buttons:
   - "\u042F\u0433\u043E\u0434\u0430"
-  - "\u041E\u0432\u043E\u0449\u044C"
+  - "\u041E\u0432\u043E\u0449"
   - "\u0424\u0440\u0443\u043A\u0442"
   - "\u0422\u0440\u0430\u0432\u0430"
   correctAnsver: 1

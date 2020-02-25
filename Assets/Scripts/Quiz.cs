@@ -7,12 +7,12 @@ using UnityEngine.SceneManagement;
 public class Quiz : MonoBehaviour
 {
     int activeTask;
-    int lives = 3;
+    int lives = 3; //каунт жизней
 
     [Header("Elements")]
     public Image[] hearts;
     public Image question; //картинка-вопрос
-    public Button[] buttons; //кнопка-ответ
+    public Button[] buttons; //кнопка-ответ, массив
 
     [Header("Config")]
     public List<Tasks> taskList;
@@ -60,7 +60,6 @@ public class Quiz : MonoBehaviour
     {
         hearts[lives - 1].gameObject.SetActive(false);
         lives--;
-        //
     }
     void UpdateQuestion()
     {
@@ -142,11 +141,7 @@ public class Quiz : MonoBehaviour
             buttons[taskList[activeTask].fiftyFifty[i] - 1].gameObject.SetActive(false);
         }
     }
-    public void ExitGame()
-    {
-        Application.Quit();
-    }
-    public void NextScene(string sceneName) //загрузчик сцен
+     public void NextScene(string sceneName) //загрузчик сцен
     {
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
